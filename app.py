@@ -2,7 +2,7 @@ import openai
 import streamlit as st
 
 
-st.header('A BasicGPT __by_ :blue[Pratyush Mishra] emojis :sunglasses:')
+st.header('A BasicGPT __by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot')
     if 'OPENAI_API_KEY' in st.secrets:
