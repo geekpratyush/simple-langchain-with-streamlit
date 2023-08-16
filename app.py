@@ -2,7 +2,7 @@ import openai
 import streamlit as st
 from transformers import pipeline
 
-st.header('A BasicGPT __by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
+st.header('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
     if 'OPENAI_API_KEY' in st.secrets:
@@ -22,7 +22,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input(":keyboard: What is up?"):
+if prompt := st.chat_input("What is up?"):
     with open('creator.txt', 'r') as file:
         creator_content = file.read()
     st.session_state.messages.append({"role": "system", "content": creator_content})
