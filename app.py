@@ -4,7 +4,7 @@ import openai
 import streamlit as st
 
 
-st.header('This is a basic GPT developed  by Pratyush Ranjan Mishra')
+st.header('A basic GPT developed  by Pratyush Ranjan Mishra')
 
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot')
