@@ -23,7 +23,10 @@ if "messages" not in st.session_state:
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        if st.chat_message(message["role"]) == "system":
+            st.markdown("How can I assist you?")
+        else:    
+            st.markdown(message["content"])
 
 if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "system", "content": "You are a chatbot developed and crated  by Pratyush with the help of OpenAI"})
