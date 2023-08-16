@@ -3,8 +3,8 @@ import streamlit as st
 from transformers import pipeline
 
 
-def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": ""}]
+# def clear_chat_history():
+#     st.session_state.messages = []
 
 st.header('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 with st.sidebar:
@@ -21,7 +21,7 @@ with st.sidebar:
     st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
 
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": ""}]
+    st.session_state.messages = []
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
