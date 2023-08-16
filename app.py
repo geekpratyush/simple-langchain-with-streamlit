@@ -3,8 +3,6 @@
 import openai
 import streamlit as st
 
-
-st.header('A basicGPT developed  by Pratyush Mishra')
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot')
     if 'OPENAI_API_KEY' in st.secrets:
