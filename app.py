@@ -41,7 +41,7 @@ if prompt := st.chat_input("What is up?"):
         for response in openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
             messages=[{"role": m["role"], "content": m["content"]}
-                      for m in st.session_state.messages], stream=False):
+                      for m in st.session_state.messages], stream=True):
             full_response+=response.choices[0].delta.get("role", "")
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
