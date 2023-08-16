@@ -18,7 +18,7 @@ with st.sidebar:
             st.warning('Please enter your credentials!', icon='⚠️')
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
-    st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
+    #st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
