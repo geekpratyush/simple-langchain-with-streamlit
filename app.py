@@ -3,6 +3,7 @@ import streamlit as st
 from transformers import pipeline
 
 st.title('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
+st.divider()
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
     if 'OPENAI_API_KEY' in st.secrets:
