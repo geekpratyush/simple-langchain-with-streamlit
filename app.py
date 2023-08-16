@@ -4,7 +4,7 @@ from transformers import pipeline
 
 
 def clear_chat_history():
-    st.session_state.messages = []
+    st.session_state.messages = [{"role": "assistant", "content": ""}]
 
 st.header('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 with st.sidebar:
@@ -41,7 +41,6 @@ if prompt := st.chat_input("What is up?"):
             model="gpt-3.5-turbo",
             messages=[{"role": m["role"], "content": m["content"]}
                       for m in st.session_state.messages], stream=True):
-            print(response.choices[0].delta.get("content", ""))
             full_response += response.choices[0].delta.get("content", "")
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
