@@ -40,9 +40,8 @@ if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
 def clear_chat_history():
-    with open('creator.txt', 'r') as file:
-        creator_content = file.read()
-        st.session_state.messages = [{"role": "system", "content": creator_content}]
+    st.session_state.messages = [{"role": "user", "content": "How can I help you today?"}]
+
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
 
 
