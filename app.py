@@ -25,7 +25,8 @@ if "messages" not in st.session_state:
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+        if message["role"]<>"system":
+            st.markdown(message["content"])
 
 with open('creator.txt', 'r') as file:
     creator_content = file.read()
