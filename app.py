@@ -23,6 +23,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("What is up?"):
+    st.session_state.messages.append({"role": "system", "content": "You are a helpful chatbot developed and created  by Pratyush Mishra"})
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
