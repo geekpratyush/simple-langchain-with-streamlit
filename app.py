@@ -3,6 +3,9 @@ import streamlit as st
 
 
 st.header('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
+
+
+
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
     if 'OPENAI_API_KEY' in st.secrets:
@@ -23,6 +26,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("What is up?"):
+    st.session_state.messages.append({"role": "system", "content": "Some Sample System Message"})
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
