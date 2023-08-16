@@ -22,7 +22,8 @@ if "messages" not in st.session_state:
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown("PRINT"+message["role"]+message["content"])
+        if message["role"]!="system":
+            st.markdown("PRINT"+message["role"]+message["content"])
 
 
 
