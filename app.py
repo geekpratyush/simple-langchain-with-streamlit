@@ -19,13 +19,6 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 
-# Display or clear chat messages
-# for message in st.session_state.messages:
-#     with st.chat_message(message["role"]):
-#         st.write(message["content"])
-
-
-
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
@@ -33,7 +26,7 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("What is up?"):
     with open('creator.txt', 'r') as file:
         creator_content = file.read()
-    st.session_state.messages.append({"role": "system", "content": creator_content})
+    #st.session_state.messages.append({"role": "system", "content": creator_content})
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
