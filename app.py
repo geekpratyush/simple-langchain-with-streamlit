@@ -4,7 +4,7 @@ from transformers import pipeline
 
 
 def clear_chat_history():
-    st.session_state.messages = [{"role": "user", "content": "How can I help you today?"}]
+    st.session_state.messages = []
 
 st.header('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 with st.sidebar:
