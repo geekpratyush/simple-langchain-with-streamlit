@@ -2,6 +2,10 @@ import openai
 import streamlit as st
 from transformers import pipeline
 
+
+def clear_chat_history():
+    st.session_state.messages = [{"role": "user", "content": "How can I help you today?"}]
+
 st.header('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
@@ -14,6 +18,7 @@ with st.sidebar:
             st.warning('Please enter your credentials!', icon='⚠️')
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
+    st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -41,8 +46,7 @@ if prompt := st.chat_input("What is up?"):
         message_placeholder.markdown(full_response)
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
-def clear_chat_history():
-    st.session_state.messages = [{"role": "user", "content": "How can I help you today?"}]
-st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
+
+
 
 
