@@ -21,7 +21,7 @@ with st.sidebar:
     st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
 
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [{"role": "assistant", "content": ""]
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
