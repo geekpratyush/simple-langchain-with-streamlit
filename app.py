@@ -18,14 +18,11 @@ with st.sidebar:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
 if prompt := st.chat_input("What is up?"):
-    with open('creator.txt', 'r') as file:
-        creator_content = file.read()
     #st.session_state.messages.append({"role": "system", "content": creator_content})
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
@@ -43,7 +40,9 @@ if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
 
 def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+    with open('creator.txt', 'r') as file:
+        creator_content = file.read()
+        st.session_state.messages = [{"role": "system", "content": creator_content}]
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
 
 
