@@ -28,6 +28,11 @@ for message in st.session_state.messages:
         else:    
             st.markdown(message["content"])
 
+def clear_chat_history():
+    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
+
+
 if prompt := st.chat_input("What is up?"):
     with open('creator.txt', 'r') as file:
         creator_content = file.read()
