@@ -23,7 +23,9 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 if prompt := st.chat_input("What is up?"):
-    #st.session_state.messages.append({"role": "system", "content": creator_content})
+    with open('creator.txt', 'r') as file:
+        creator_content = file.read()
+    st.session_state.messages.append({"role": "system", "content": creator_content})
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
@@ -41,7 +43,6 @@ if prompt := st.chat_input("What is up?"):
 
 def clear_chat_history():
     st.session_state.messages = [{"role": "user", "content": "How can I help you today?"}]
-
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history) 
 
 
