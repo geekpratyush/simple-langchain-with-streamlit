@@ -2,6 +2,10 @@ import streamlit as st
 import time
 st.write('Pratyush\'s Generative AI *World!* :sunglasses:')
 
+with st.container():
+   st.title('This is a title');
+   st.write("This is inside the container")
+
 st.markdown('Streamlit is **_really_ cool**.')
 st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
 st.markdown(":red[$\sqrt{x^2+y^2}=1$] is a Pythagorean identity. :pencil:")
