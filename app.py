@@ -8,3 +8,9 @@ st.markdown(":red[$\sqrt{x^2+y^2}=1$] is a Pythagorean identity. :pencil:")
 
 age = st.slider('How old are you?', 0, 130, 25)
 st.write("I'm ", age, 'years old')
+
+title = st.text_input('Movie title', 'Life of Brian')
+st.write('The current movie title is', title)
+
+with x := st.text_input('Write something here:'):
+  st.write(x)
