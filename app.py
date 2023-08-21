@@ -1,22 +1,18 @@
-import os
 import streamlit as st
 from langchain.llms import OpenAI
-from langchain.chat_models import ChatOpenAI
 
-with st.sidebar:
-    st.title('🤖💬 OpenAI Chatbot :flag-in:')
-    api_key = st.text_input('Enter OpenAI API token:', type='password')
-    os.environ['OPENAI_API_KEY']=api_key
+st.title('🦜🔗 Quickstart App')
 
-    if not (api_key.startswith('sk-') and len(api_key)==51):
-            st.warning('Please enter your credentials!', icon='⚠️')
-    else:
-            st.success('Proceed to entering your prompt message!', icon='👉')
+openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
-llm = OpenAI()
-chat_model = ChatOpenAI()
+def generate_response(input_text):
+    llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
+    st.info(llm(input_text))
 
-llm.predict("hi!")
-
-chat_model.predict("hi!")
-
+with st.form('my_form'):
+    text = st.text_area('Enter text:', 'What are the three key pieces of advice for learning how to code?')
+    submitted = st.form_submit_button('Submit')
+    if not openai_api_key.startswith('sk-'):
+        st.warning('Please enter your OpenAI API key!', icon='⚠')
+    if submitted and openai_api_key.startswith('sk-'):
+        generate_response(text)
