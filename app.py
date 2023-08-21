@@ -20,9 +20,3 @@ with st.sidebar:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
 
-
-llm = OpenAI()
-chat_model = ChatOpenAI()
-
-llm.predict("hi!")
-chat_model.predict("hi!")
