@@ -1,4 +1,5 @@
 import openai
+import langchain
 import streamlit as st
 st.title('Langchain App')
 st.header('A Langchain app _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
@@ -15,4 +16,7 @@ with st.sidebar:
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
+
+response = langchain.generate_text(prompt="What are the benefits of using LangChain?", model="openai/gpt-3")
+print(response)
 
