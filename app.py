@@ -9,7 +9,14 @@ st.header('A Langchain app _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    
+
+for message in st.session_state.messages:
+    with st.chat_message(message["role"]):
+        if message["role"] == "system":
+            st.markdown("How can I assist you?")
+        else:    
+            st.markdown(message["content"])
+
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
     if 'OPENAI_API_KEY' in st.secrets:
