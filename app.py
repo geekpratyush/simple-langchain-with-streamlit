@@ -25,12 +25,13 @@ with st.sidebar:
         openai.api_key = st.secrets['OPENAI_API_KEY']
     else:
         openai.api_key = st.text_input('Enter OpenAI API token:', type='password')
+        llm = OpenAI(openai_api_key=openai.api_key)
         if not (openai.api_key.startswith('sk-') and len(openai.api_key)==51):
             st.warning('Please enter your credentials!', icon='⚠️')
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
-llm = OpenAI(openai_api_key=st.secrets['OPENAI_API_KEY'])
+
 
 if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
