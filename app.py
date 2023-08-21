@@ -6,4 +6,5 @@ st.markdown('Streamlit is **_really_ cool**.')
 st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
 st.markdown(":red[$\sqrt{x^2+y^2}=1$] is a Pythagorean identity. :pencil:")
 
-st.slider("This is a slider", 0, 100, (25, 75))
+age = st.slider('How old are you?', 0, 130, 25)
+st.write("I'm ", age, 'years old')
