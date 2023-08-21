@@ -31,8 +31,6 @@ with st.sidebar:
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
-llm = OpenAI()
-chat_model = ChatOpenAI()
 
 if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -40,4 +38,4 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
-    st.session_state.messages.append({"role": "assistant", "content": full_response})
+    st.session_state.messages.append({"role": "assistant", "content": llm.predict("hi!")})
