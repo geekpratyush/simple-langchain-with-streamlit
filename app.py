@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 import openai
 import langchain
 import streamlit as st
@@ -18,8 +17,7 @@ with st.sidebar:
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
-load_dotenv()
-openai.api_key = os.getenv(st.secrets['OPENAI_API_KEY'])
+
 
 response = langchain.generate_text(prompt="What are the benefits of using LangChain?", model="openai/gpt-3")
 print(response)
