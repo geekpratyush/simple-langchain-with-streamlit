@@ -1,6 +1,7 @@
 import os
 import openai
-import langchain
+from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
 import streamlit as st
 st.title('Langchain App')
 st.header('A Langchain app _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
@@ -10,6 +11,7 @@ with st.sidebar:
     if 'OPENAI_API_KEY' in st.secrets:
         st.success('API key already provided!', icon='✅')
         openai.api_key = st.secrets['OPENAI_API_KEY']
+        llm = OpenAI(openai_api_key=st.secrets['OPENAI_API_KEY'])
     else:
         openai.api_key = st.text_input('Enter OpenAI API token:', type='password')
         if not (openai.api_key.startswith('sk-') and len(openai.api_key)==51):
@@ -19,6 +21,8 @@ with st.sidebar:
 
 
 
-response = langchain.generate_text(prompt="What are the benefits of using LangChain?", model="openai/gpt-3")
-print(response)
+llm = OpenAI()
+chat_model = ChatOpenAI()
 
+llm.predict("hi!")
+chat_model.predict("hi!")
