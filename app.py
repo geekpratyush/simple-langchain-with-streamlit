@@ -16,3 +16,7 @@ with st.sidebar:
 llm = OpenAI()
 chat_model = ChatOpenAI()
 
+st.write(llm.predict("hi!"))
+
+st.write(chat_model.predict("hi!"))
+
