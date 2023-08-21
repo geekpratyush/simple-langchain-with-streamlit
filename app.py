@@ -15,7 +15,7 @@ st.snow()
 st.balloons()
 if prompt := st.chat_input("What is up?"):
   st.balloons()
-  st.toast(prompt)
+  st.toast(prompt, icon='🎉')
 
 
 with st.sidebar:
