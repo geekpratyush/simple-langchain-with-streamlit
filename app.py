@@ -10,7 +10,7 @@ with st.sidebar:
         openai_api_key  = st.secrets['OPENAI_API_KEY']
     else:
         openai_api_key = st.text_input('OpenAI API Key', type='password')
-        if not (openai.api_key.startswith('sk-') and len(openai.api_key)==51):
+        if not (openai_api_key.startswith('sk-') and len(openai_api_key)==51):
             st.warning('Please enter your credentials!', icon='⚠️')
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
