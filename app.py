@@ -39,4 +39,4 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
-        message_placeholder.markdown(llm.predict("hi"))
+        message_placeholder.markdown("Hello")
