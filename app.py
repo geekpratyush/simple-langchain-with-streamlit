@@ -20,3 +20,9 @@ with st.sidebar:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
 
+if prompt := st.chat_input("What is up?"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(prompt)
+    with st.chat_message("assistant"):
+        message_placeholder = st.empty()
