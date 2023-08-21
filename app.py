@@ -6,6 +6,10 @@ import streamlit as st
 st.title('Langchain App')
 st.header('A Langchain app _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 
+
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+    
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
     if 'OPENAI_API_KEY' in st.secrets:
