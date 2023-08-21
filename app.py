@@ -2,6 +2,11 @@ import streamlit as st
 from langchain.llms import OpenAI
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
 
 st.title('🦜🔗 Quickstart App')
 
@@ -24,7 +29,7 @@ def generate_response(input_text):
     st.info(llm(input_text))
     messages = [HumanMessage(content=input_text)]
     llm.predict_messages(messages)
-    chat_models.predict_messages(messages)
+    
 
 with st.form('my_form'):
     text = st.text_area('Enter text:', 'What are the three key pieces of advice for learning how to code?')
