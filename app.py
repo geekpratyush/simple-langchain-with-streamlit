@@ -1,7 +1,7 @@
 import openai
 import streamlit as st
-
-st.header('A BasicGPT _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
+st.title('Langchain App')
+st.header('A Langchain app _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
