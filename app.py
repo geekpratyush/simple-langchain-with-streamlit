@@ -15,12 +15,4 @@ with st.sidebar:
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
 
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        if message["role"] == "system":
-            st.markdown("How can I assist you?")
-        else:    
-            st.markdown(message["content"])
