@@ -39,4 +39,12 @@ if prompt := st.chat_input("What is up?"):
         st.markdown(prompt)
     with st.chat_message("assistant"):
         message_placeholder = st.empty()
-        message_placeholder.markdown(llm.predict('Hi'))
+        full_response = ""
+        for response in llm.predict(
+            messages=[{"role": m["role"], "content": m["content"]}
+                      for m in st.session_state.messages], stream=True):
+            full_response += response.choices[0].delta.get("content", "")
+            message_placeholder.markdown(full_response + "▌")
+        message_placeholder.markdown(full_response)
+    st.session_state.messages.append({"role": "assistant", "content": full_response})
+        
