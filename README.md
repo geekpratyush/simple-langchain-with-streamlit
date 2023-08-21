@@ -1,2 +1,2 @@
-# basicgpt
-This is a basic GPT Chat Bot.
+# Langchain Practice App
+This is to practice Langchain towards taking the benefit of it.
