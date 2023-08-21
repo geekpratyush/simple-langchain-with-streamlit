@@ -7,6 +7,7 @@ st.title('Langchain App')
 st.header('A Langchain app _by_ :blue[Pratyush Ranjan Mishra] :sunglasses:')
 
 
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -30,6 +31,8 @@ with st.sidebar:
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
 
+llm = OpenAI()
+chat_model = ChatOpenAI()
 
 if prompt := st.chat_input("What is up?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
