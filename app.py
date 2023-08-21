@@ -14,7 +14,7 @@ st.write('The current movie title is', title)
 st.snow()
 st.balloons()
 if prompt := st.chat_input("What is up?"):
-  st.write(prompt)
+  st.balloons()
 
 
 with st.sidebar:
