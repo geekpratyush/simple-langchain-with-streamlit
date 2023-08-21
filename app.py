@@ -1,31 +1,14 @@
 import streamlit as st
-import time
-st.write('Pratyush\'s Generative AI *World!* :sunglasses:')
-
-with st.container():
-   st.title('This is a title');
-   st.write("This is inside the container")
-
-st.markdown('Streamlit is **_really_ cool**.')
-st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
-st.markdown(":red[$\sqrt{x^2+y^2}=1$] is a Pythagorean identity. :pencil:")
-
-age = st.slider('How old are you?', 0, 130, 25)
-st.write("I'm ", age, 'years old')
-
-title = st.text_input('Movie title', 'Life of Brian')
-st.write('The current movie title is', title)
-st.snow()
-st.balloons()
-if prompt := st.chat_input("What is up?"):
-  st.balloons()
-  st.toast(prompt, icon='🎉')
-
 
 with st.sidebar:
-    with st.echo():
-        st.write("This code will be printed to the sidebar.")
+    st.title('🤖💬 OpenAI Chatbot :flag-in:')
+    if 'OPENAI_API_KEY' in st.secrets:
+        st.success('API key already provided!', icon='✅')
+        openai.api_key = st.secrets['OPENAI_API_KEY']
+    else:
+        openai.api_key = st.text_input('Enter OpenAI API token:', type='password')
+        if not (openai.api_key.startswith('sk-') and len(openai.api_key)==51):
+            st.warning('Please enter your credentials!', icon='⚠️')
+        else:
+            st.success('Proceed to entering your prompt message!', icon='👉')
 
-    with st.spinner("Loading..."):
-        time.sleep(5)
-    st.success("Done!")
