@@ -11,6 +11,7 @@ st.write("I'm ", age, 'years old')
 
 title = st.text_input('Movie title', 'Life of Brian')
 st.write('The current movie title is', title)
+st.snow()
 
 if prompt := st.chat_input("What is up?"):
   st.write(prompt)
