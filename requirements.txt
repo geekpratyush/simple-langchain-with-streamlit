@@ -1,4 +1,5 @@
 streamlit
+mymodel
 openai
 langchain
 dotenv
