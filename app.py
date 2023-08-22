@@ -22,13 +22,14 @@ with st.sidebar:
         else:
             st.success('Proceed to entering your prompt message!', icon='👉')
             
-    
+
 
 def generate_response(input_text):
     llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
     st.info(llm(input_text))
     messages = [HumanMessage(content=input_text)]
-    llm.predict_messages(messages)
+    x=llm.predict_messages(messages)
+    st.markdown(x)
     
 
 with st.form('my_form'):
