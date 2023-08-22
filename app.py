@@ -1,14 +1,13 @@
 import streamlit as st
 from langchain.llms import OpenAI
-from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage
-from langchain.prompts.chat import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
+from langchain.prompts import PromptTemplate
+from langchain.chains import LLMChain, SequentialChain 
+from langchain.memory import ConversationBufferMemory
+from langchain.utilities import WikipediaAPIWrapper 
 
-st.title('🦜🔗 Quickstart App')
+st.title('🦜🔗 Quickstart App by Pratyush')
+prompt = st.text_area('Plug in your prompt here')
+
 
 with st.sidebar:
     st.title('🤖💬 OpenAI Chatbot :flag-in:')
@@ -24,18 +23,44 @@ with st.sidebar:
             
 
 
-def generate_response(input_text):
-    llm = OpenAI(temperature=0.7, openai_api_key=openai_api_key)
-    st.info(llm(input_text))
-    messages = [HumanMessage(content=input_text)]
-    x=llm.predict_messages(messages)
-    st.markdown(x)
-    
+# Prompt templates
+title_template = PromptTemplate(
+    input_variables = ['topic'], 
+    template='write me a youtube video title about {topic}'
+)
 
-with st.form('my_form'):
-    text = st.text_area('Enter text:', 'What are the three key pieces of advice for learning how to code?')
-    submitted = st.form_submit_button('Submit')
-    if not openai_api_key.startswith('sk-'):
-        st.warning('Please enter your OpenAI API key!', icon='⚠')
-    if submitted and openai_api_key.startswith('sk-'):
-        generate_response(text)
+script_template = PromptTemplate(
+    input_variables = ['title', 'wikipedia_research'], 
+    template='write me a youtube video script based on this title TITLE: {title} while leveraging this wikipedia reserch:{wikipedia_research} '
+)
+
+# Memory 
+title_memory = ConversationBufferMemory(input_key='topic', memory_key='chat_history')
+script_memory = ConversationBufferMemory(input_key='title', memory_key='chat_history')
+
+
+# Llms
+llm = OpenAI(temperature=0.9) 
+title_chain = LLMChain(llm=llm, prompt=title_template, verbose=True, output_key='title', memory=title_memory)
+script_chain = LLMChain(llm=llm, prompt=script_template, verbose=True, output_key='script', memory=script_memory)
+
+
+wiki = WikipediaAPIWrapper()
+
+# Show stuff to the screen if there's a prompt
+if prompt: 
+    title = title_chain.run(prompt)
+    wiki_research = wiki.run(prompt) 
+    script = script_chain.run(title=title, wikipedia_research=wiki_research)
+
+    st.write(f" :blue[{title}] " ) 
+    st.write(script) 
+
+    with st.expander('Title History'): 
+        st.info(title_memory.buffer)
+
+    with st.expander('Script History'): 
+        st.info(script_memory.buffer)
+
+    with st.expander('Wikipedia Research'): 
+        st.info(wiki_research)
